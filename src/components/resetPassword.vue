@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h1>RESET PASSWORD</h1>
-
+    {{ message }}
     <div class="centerForm">
       <form @submit.prevent="reset">
         <div class="field">
@@ -9,8 +9,10 @@
             <input
               class="input"
               type="password"
-              placeholder="password"
-              required
+              v-validate="'required'"
+              name="password"
+              placeholder="Password"
+              ref="password"
               v-model="userInformation.password"
             />
             <span class="icon is-small is-left">
@@ -21,10 +23,12 @@
         <div class="field">
           <p class="control has-icons-left">
             <input
+              v-validate="'required|confirmed:password'"
               class="input"
+              name="password_confirmation"
               type="password"
-              placeholder="Retype Password"
-              required
+              placeholder="Password, Again"
+              data-vv-as="password"
               v-model="userInformation.retypedPassword"
             />
             <span class="icon is-small is-left">
@@ -34,8 +38,16 @@
         </div>
         <div class="field">
           <p class="control">
-            <button class="button is-success">Reset</button>
+            <button class="button is-success" v-if="!errors.has('password_confirmation')">Reset</button>
           </p>
+        </div>
+
+        <!-- ERRORS -->
+        <div class="alert alert-danger" v-show="errors.any()">
+          <div v-if="errors.has('password')">{{ errors.first('password') }}</div>
+          <div
+            v-if="errors.has('password_confirmation')"
+          >{{ errors.first('password_confirmation') }}</div>
         </div>
       </form>
     </div>
@@ -43,44 +55,40 @@
 </template>
 
 <script>
-
-import service from "../services/user"
+import service from "../services/user";
 
 export default {
-
-data() {
+  data() {
     return {
-        userInformation: {
-            id: "",
-            password: "",
-            retypedPassword: ""
-        },
-        message: ""
-    }
-},
+      userInformation: {
+        id: 3,
+        password: "",
+        retypedPassword: ""
+      },
+      message: ""
+    };
+  },
 
-methods: {
+  methods: {
     reset() {
-        this.check();
+      this.check();
     },
-
 
     check() {
-        if(this.password != this.retypedPassword) {
-            this.setMessage("Please, password must match!");
-        } else  {
-            service.update(this.userInformation).then(response => {
-                this.$log.info("resetPassowrd", response.data.message);
-            })
+      service.update(this.userInformation).then(response => {
+        if (response.data.status) {
+          alert("Password updated!");
+          this.$router.push("/login");
+        } else {
+          this.setMessage(response.data.message);
         }
-    },
-
-    setMessage(msg){
-        this.message = msg;
+      });
     }
+  },
 
-}
-
+  setMessage(msg) {
+    this.message = msg;
+  }
 };
 </script>
 

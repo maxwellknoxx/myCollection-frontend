@@ -7,7 +7,7 @@ export default {
     },
 
     update: (user) => {
-        return http.put('user/user', user)
+        return http.put('user/users', user)
     }
 
 

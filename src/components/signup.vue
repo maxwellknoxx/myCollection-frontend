@@ -118,7 +118,7 @@
             <button class="button is-link">Submit</button>
           </div>
           <div class="control">
-            <button class="button is-text">Cancel</button>
+            <button class="button is-text"><router-link to="/home">Cancel</router-link></button>
           </div>
         </div>
       </div>

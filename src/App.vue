@@ -4,8 +4,8 @@
     <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
       <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-          <a class="navbar-item">Home</a>
-          <a class="navbar-item">Categories</a>
+          <a class="navbar-item"><router-link to="/home">Home</router-link></a>
+          <a class="navbar-item"><router-link to="/categories">Categories</router-link></a>
         </div>
 
         <div class="navbar-end">
@@ -22,6 +22,15 @@
     </nav>
     <!-- NavBar -->
     <router-view></router-view>
+    <br/>
+    <br/>
+    <footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>MyCollection</strong> by <a href="https://github.com/maxwellknoxx">Maxwell Santos</a>
+    </p>
+  </div>
+</footer>
   </div>
 </template>
 
