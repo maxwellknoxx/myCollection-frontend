@@ -7,6 +7,7 @@ import login from './components/login'
 import main from './components/main'
 import signup from './components/signup'
 import forgotPassword from './components/forgotPassword'
+import resetPassword from './components/resetPassword'
 
 Vue.config.productionTip = false
 Vue.use(VueRouter)
@@ -28,7 +29,8 @@ const routes = [
   { path: '/login', component: login },
   { path: '/main', component: main },
   { path: '/signup', component: signup },
-  { path: '/forgotPassword', component: forgotPassword }
+  { path: '/forgotPassword', component: forgotPassword },
+  { path: '/resetPassword', component: resetPassword }
 
 ]
 

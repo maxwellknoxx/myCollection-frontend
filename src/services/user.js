@@ -2,8 +2,12 @@ import { http } from './config'
 
 export default {
 
-    checkInformation: (id, user) => {
-        return http.get('user/information/' + id, user)
+    checkInformation: (user) => {
+        return http.post('user/information', user)
+    },
+
+    update: (user) => {
+        return http.put('user/user', user)
     }
 
 

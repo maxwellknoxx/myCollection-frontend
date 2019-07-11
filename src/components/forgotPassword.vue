@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div class="centerForm">
+      {{ message }}
       <div class="container">
         <form @submit.prevent="checkInformation">
           <div class="field">
@@ -93,9 +94,11 @@ export default {
     checkInformation() {
       this.$log.info(this.userInformation);
       service
-        .checkInformation(this.userId, this.userInformation)
+        .checkInformation(this.userInformation)
         .then(response => {
-          this.$log.info(response.data);
+          if(response.data.status) {
+            this.$router.push("/resetPassword");
+          }
         });
     },
 
@@ -105,7 +108,7 @@ export default {
           "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
         )
       ) {
-        this.showMessage("Please, insert a valide E-mail");
+        this.setMessage("Please, insert a valide E-mail");
         this.userInformation.email = "";
       }
     },
