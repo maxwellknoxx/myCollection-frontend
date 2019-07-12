@@ -127,7 +127,7 @@
 </template>
 
 <script>
-import service from "../services/auth";
+import service from "../_services/auth";
 
 export default {
   data() {

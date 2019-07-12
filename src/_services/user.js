@@ -10,5 +10,4 @@ export default {
         return http.put('user/users', user)
     }
 
-
 }

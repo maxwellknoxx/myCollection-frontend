@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    
+    <div class="alert alert-info">
+      Username: test
+      <br />Password: test
+    </div>
+
     <div class="container">
       <h1>My Collection</h1>
       <br />
@@ -14,14 +20,16 @@
                 type="text"
                 placeholder="username"
                 required
-                v-model="user.username"
+                v-model="username"
                 @click="cleanMessage()"
                 @blur="validateUserField()"
+                :class="{ 'is-invalid': submitted && !username }"
               />
               <span class="icon is-small is-left">
                 <i class="fas fa-envelope"></i>
               </span>
             </p>
+            <div v-show="submitted && !username" class="invalid-feedback">Username is required</div>
           </div>
           <div class="field">
             <p class="control has-icons-left">
@@ -30,18 +38,19 @@
                 type="password"
                 placeholder="Password"
                 required
-                v-model="user.password"
+                v-model="password"
                 @click="cleanMessage()"
-                @blur="validateEmail()"
+                :class="{ 'is-invalid': submitted && !password }"
               />
               <span class="icon is-small is-left">
                 <i class="fas fa-lock"></i>
               </span>
             </p>
+            <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
           </div>
           <div class="field">
             <p class="control">
-              <button class="button is-success">Login</button>
+              <button class="button is-success" :disabled="loggingIn">Login</button>
             </p>
           </div>
         </form>
@@ -60,30 +69,36 @@
 </template>
 
 <script>
-import loginService from "../services/auth";
-
 export default {
   data() {
     return {
-      user: {
-        username: "",
-        password: ""
-      },
+      username: "",
+      password: "",
+      submitted: false,
       message: ""
     };
   },
 
+  computed: {
+    loggingIn() {
+      return this.$store.state.authentication.status.loggingIn;
+    }
+  },
+
+  created() {
+    // reset login status
+    this.$store.dispatch("authentication/logout");
+  },
+
   methods: {
     login() {
-      try {
-        loginService.login(this.user).then(response => {
-          this.$log.info("Login", response.data);
-
-          this.$log.info("Login", response.data);
-          this.$router.push("/main");
+      this.submitted = true;
+      const { username, password } = this;
+      const { dispatch } = this.$store;
+      if (username && password) {
+        dispatch("authentication/login", { username, password }).then(res => {
+          this.$log.info('login', res);
         });
-      } catch (error) {
-        this.setMessage("login does not match");
       }
     },
 
@@ -97,20 +112,9 @@ export default {
     },
 
     validateUserField() {
-      if (!this.userInformation.userName.match("^[a-zA-Z0-9]*$")) {
+      if (!this.username.match("^[a-zA-Z0-9]*$")) {
         this.showMessage("Please, no space allowed");
-        this.userInformation.userName = "";
-      }
-    },
-
-    validateEmail() {
-      if (
-        !this.userInformation.email.match(
-          "^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$"
-        )
-      ) {
-        this.showMessage("Please, insert a valide E-mail");
-        this.userInformation.email = "";
+        this.username = "";
       }
     }
   }

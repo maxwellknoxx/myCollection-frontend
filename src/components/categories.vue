@@ -64,7 +64,7 @@
 </template>
 
 <script>
-import service from "../services/category";
+import service from "../_services/category";
 
 export default {
   data() {

@@ -70,7 +70,7 @@
 
 
 <script>
-import service from "../services/user";
+import service from "../_services/user";
 
 export default {
   data() {
