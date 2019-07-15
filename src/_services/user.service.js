@@ -19,9 +19,10 @@ function login(username, password) {
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
-            if (user.token) {
+            if (user.data.jwt.accessToken) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(user));
+                //console.log(JSON.stringify(user.data));
+                localStorage.setItem('user', JSON.stringify(user.data.jwt.accessToken));
             }
 
             return user;
@@ -54,13 +55,7 @@ function createUser(userInformation) {
     return fetch(`http://localhost:8080/api/auth/signup`, requestOptions)
         .then(handleResponse)
         .then(response => {
-            // login successful if there's a jwt token in the response
-            if (response.data.status) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                localStorage.setItem('user', JSON.stringify(response.data.data));
-            }
-
-            return response.data.data;
+            return response;
         });
 }
 

@@ -17,7 +17,7 @@ export const authentication = {
                 .then(
                     user => {
                         commit('loginSuccess', user);
-                        router.push('/categories');
+                        this.$router.push('/categories'); //pqp arruma essa porra amanha quando der vsf 
                     },
                     error => {
                         commit('loginFailure', error);

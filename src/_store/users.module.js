@@ -19,7 +19,7 @@ export const users = {
         createUser({commit}) {
             commit('createUser');
             userService.createUser().then(response => {
-                users => commit('getAllSuccess', response.data.data)
+                commit('getAllSuccess', response)
             })
         }
 
