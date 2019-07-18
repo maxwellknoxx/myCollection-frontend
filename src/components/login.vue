@@ -1,10 +1,5 @@
 <template>
   <div id="app">
-    
-    <div class="alert alert-info">
-      Username: test
-      <br />Password: test
-    </div>
 
     <div class="container">
       <h1>My Collection</h1>

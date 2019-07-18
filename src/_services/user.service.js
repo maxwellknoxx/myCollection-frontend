@@ -23,6 +23,7 @@ function login(username, password) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 //console.log(JSON.stringify(user.data));
                 localStorage.setItem('user', JSON.stringify(user.data.jwt.accessToken));
+                localStorage.setItem('profile', JSON.stringify(user.data));
             }
 
             return user;
@@ -32,6 +33,7 @@ function login(username, password) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
+    localStorage.removeItem('profile');
 }
 
 function getAll() {

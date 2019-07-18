@@ -1,6 +1,7 @@
 import { userService } from '../_services';
 import { router } from '../_helpers';
 
+
 const user = JSON.parse(localStorage.getItem('user'));
 const initialState = user
     ? { status: { loggedIn: true }, user }
@@ -16,8 +17,9 @@ export const authentication = {
             userService.login(username, password)
                 .then(
                     user => {
+                        
                         commit('loginSuccess', user);
-                        this.$router.push('/categories'); //pqp arruma essa porra amanha quando der vsf 
+                        router.push('/categories');
                     },
                     error => {
                         commit('loginFailure', error);

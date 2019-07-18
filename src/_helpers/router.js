@@ -1,5 +1,6 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
+
 import login from '../components/login'
 import home from '../components/home'
 import categories from '../components/categories'
@@ -7,19 +8,13 @@ import signup from '../components/signup'
 import forgotPassword from '../components/forgotPassword'
 import resetPassword from '../components/resetPassword'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export const router = new Router({
     mode: 'history',
     routes: [
         { path: '/', name: 'main', component: home },
-        {
-            path: '/login', name: 'login', component: login,
-            meta: {
-                public: true,
-                onlyWhenLoggedOut: true
-            }
-        },
+        { path: '/login', name: 'login', component: login },
         { path: '/home', name: 'home', component: home },
         { path: '/categories', name: 'categories', component: categories },
         { path: '/signup', name: 'signup', component: signup },
@@ -30,8 +25,6 @@ export const router = new Router({
         { path: '*', redirect: '/' }
     ]
 });
-
-export default router;
 
 router.beforeEach((to, from, next) => {
     // redirect to login page if not logged in and trying to access a restricted page
@@ -45,4 +38,3 @@ router.beforeEach((to, from, next) => {
   
     next();
   })
-

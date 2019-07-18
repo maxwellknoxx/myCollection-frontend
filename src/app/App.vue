@@ -21,7 +21,8 @@
                 </strong>
               </a>
               <a class="button is-light">
-                <router-link to="/login">Log in</router-link>
+                
+                <router-link to="/login">Log in  </router-link>
               </a>
             </div>
           </div>
@@ -36,6 +37,7 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <p>
+          {{ loggingIn }}
           <strong>MyCollection</strong> by
           <a href="https://github.com/maxwellknoxx">Maxwell Santos</a>
         </p>
@@ -50,7 +52,13 @@ export default {
   computed: {
     alert() {
       return this.$store.state.alert;
+    },
+
+     loggingIn() {
+      return this.$store.state.authentication.status.loggingIn;
     }
+
+
   },
   watch: {
     $route(to, from) {
