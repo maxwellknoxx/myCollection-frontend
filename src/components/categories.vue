@@ -1,107 +1,107 @@
 <template>
   <div id="app">
-    <div id="search">
-      <div class="field has-addons">
-        <div class="control">
-          <input class="input" type="text" placeholder="Find an item" />
-        </div>
-        <div class="control">
-          <a class="button is-info">Search</a>
+    <div id="categories" class="categories">
+      <h1>Categories</h1>
+
+      <ul>
+        <li>
+          <router-link to='/category/1'>Cards</router-link>
+        </li>
+        <li>
+          <router-link to='/category/2'>Action Figures</router-link>
+        </li>
+        <li>
+          <router-link to='/category/3'>Magazines</router-link>
+        </li>
+        <li>
+          <router-link to='/category/4'>Digital media</router-link>
+        </li>
+        <li>
+          <router-link to='/category/4'>Coins</router-link>
+        </li>
+      </ul>
+    </div>
+
+    <div id="recent-items">
+      <h1>Recent items</h1>
+
+      <div class="w3-container">
+        <div class="w3-card" style="width:25%">
+          <img src="../assets/yugioh.jpg" alt="Person" height="264" width="164" />
+          <div class="w3-container">
+            <h4>
+              <b>{{ allItems[0].name }}</b>
+            </h4>
+            <p>{{ allItems[0].description }}</p>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div id="categories" class="categories">
-      <table>
-        <thead>
-          <tr>Category</tr>
-        </thead>
-
-        <tbody>
-          <tr v-for="category in allCategories" :key="category.id">
-            <router-link :to=" '/category/' + category.id ">{{ category.name }}</router-link>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div id="recent" class="recent">
-      <table>
-        <thead>
-          <tr>
-            <h2>Recent items</h2>
-          </tr>
-        </thead>
-
-        <tbody class="centered-items">
-          <!-- cada um dos items mais recentes  -->
-          <tr class="recent">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-128x128">
-                  <img
-                    src="https://52f4e29a8321344e30ae-0f55c9129972ac85d6b1f4e703468e6b.ssl.cf2.rackcdn.com/products/pictures/1130080.jpg"
-                    alt="Placeholder image"
-                  />
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Yu-gi-oh card</p>
-                    <p class="subtitle is-6">Exchange</p>
-                    <p class="title is-4">Dublin</p>
-                    <p class="subtitle is-6">Rare good card</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </template>
 
 <script>
-import service from "../_services/category";
+import itemsService from "../_services/item";
 
 export default {
   data() {
     return {
-      allCategories: []
+      allItems: []
     };
   },
 
   created() {
-    //this.findAll();
+    this.findAllItems();
   },
 
   methods: {
-    findAll() {
-      service.findAll().then(response => {
-        this.allCategories = response.data.listData;
-      });
+
+    findAllItems() {
+      itemsService.findAll().then(response => {
+        this.allItems = response.data.listData;
+        this.$log.info(this.allItems);
+      })
     }
+
   }
 };
 </script>
 
 <style>
 .categories {
-  margin: auto;
-  width: 50%;
-  border: 3px solid red;
+  float: left;
+  width: 300px;
+  border: 3px solid;
   padding: 10px;
+  margin-bottom: 50px;
 }
 
-.centered-items {
-  overflow: hidden;
-  zoom: 1;
+.recent-items {
+  padding: 70px 0;
+  position: relative;
+  text-align: center;
 }
 
 .recent {
   padding: 20px 10px;
+  margin: 20px;
+  border: 1px solid black;
+}
+
+.recent-td {
+  padding: 20px 10px;
+  margin: 20px;
+  border: #000000;
+}
+
+.VueCarousel-slide {
+  position: relative;
+  background: #42b983;
+  color: #fff;
+  font-family: Arial;
+  font-size: 24px;
+  text-align: center;
+  min-height: 100px;
 }
 
 .description {

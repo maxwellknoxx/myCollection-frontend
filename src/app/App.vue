@@ -15,14 +15,30 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
+              <div id="search" class="right">
+                <div class="field has-addons">
+                  <div class="control">
+                    <input class="input" type="text" placeholder="Find an item" />
+                  </div>
+                  <div class="control">
+                    <a class="button is-info">Search</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
               <a class="button is-primary">
                 <strong>
                   <router-link to="/signup">Sign up</router-link>
                 </strong>
               </a>
               <a class="button is-light">
-                
-                <router-link to="/login">Log in  </router-link>
+                <router-link to="/login">Log in</router-link>
               </a>
             </div>
           </div>
@@ -54,11 +70,9 @@ export default {
       return this.$store.state.alert;
     },
 
-     loggingIn() {
+    loggingIn() {
       return this.$store.state.authentication.status.loggingIn;
     }
-
-
   },
   watch: {
     $route(to, from) {
@@ -78,4 +92,13 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
+.right {
+  position: absolute;
+  right: 0px;
+  width: 300px;
+  padding: 10px;
+}
+
 </style>
