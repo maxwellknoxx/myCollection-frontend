@@ -19,6 +19,7 @@
     "vee-validate": "^2.2.12",
     "vue": "^2.6.10",
     "vue-router": "^3.0.7",
+    "vue-upload-multiple-image": "^1.1.4",
     "vuejs-logger": "1.5.3",
     "vuex": "^3.1.1"
   },

@@ -1,26 +1,6 @@
 <template>
   <div id="app">
-    <div id="categories" class="categories">
-      <h1>Categories</h1>
-
-      <ul>
-        <li>
-          <router-link to='/category/1'>Cards</router-link>
-        </li>
-        <li>
-          <router-link to='/category/2'>Action Figures</router-link>
-        </li>
-        <li>
-          <router-link to='/category/3'>Magazines</router-link>
-        </li>
-        <li>
-          <router-link to='/category/4'>Digital media</router-link>
-        </li>
-        <li>
-          <router-link to='/category/4'>Coins</router-link>
-        </li>
-      </ul>
-    </div>
+    <categoriesMenu />
 
     <div id="recent-items">
       <h1>Recent items</h1>
@@ -30,9 +10,9 @@
           <img src="../assets/yugioh.jpg" alt="Person" height="264" width="164" />
           <div class="w3-container">
             <h4>
-              <b>{{ allItems[0].name }}</b>
+              <b>{{ allRecentItems[0].name }}</b>
             </h4>
-            <p>{{ allItems[0].description }}</p>
+            <p>{{ allRecentItems[0].description }}</p>
           </div>
         </div>
       </div>
@@ -42,27 +22,30 @@
 
 <script>
 import itemsService from "../_services/item";
+import categoriesMenu from "./categoriesMenu";
 
 export default {
+  components: {
+    categoriesMenu
+  },
+
   data() {
     return {
-      allItems: []
+      allRecentItems: []
     };
   },
 
   created() {
-    this.findAllItems();
+    this.findAllRecentItems();
   },
 
   methods: {
-
-    findAllItems() {
+    findAllRecentItems() {
       itemsService.findAll().then(response => {
-        this.allItems = response.data.listData;
-        this.$log.info(this.allItems);
-      })
+        this.allRecentItems = response.data.listData;
+        this.$log.info(this.allRecentItems);
+      });
     }
-
   }
 };
 </script>

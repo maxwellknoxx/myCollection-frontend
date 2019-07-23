@@ -92,7 +92,7 @@ export default {
       const { dispatch } = this.$store;
       if (username && password) {
         dispatch("authentication/login", { username, password }).then(res => {
-          this.$log.info('login', res);
+          localStorage.setItem("isLogged", true);
         });
       }
     },

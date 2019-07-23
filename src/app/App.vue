@@ -32,12 +32,20 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="buttons">
-              <a class="button is-primary">
+              <a class="button is-primary" v-if="!loggingIn">
                 <strong>
                   <router-link to="/signup">Sign up</router-link>
                 </strong>
               </a>
-              <a class="button is-light">
+              <a class="button is-primary" v-if="loggingIn">
+                <strong>
+                  <router-link to="/publish">Publish item</router-link>
+                </strong>
+              </a>
+              <a class="button is-light" v-if="loggingIn">
+                <router-link to="/login">Log out</router-link>
+              </a>
+              <a class="button is-light" v-if="!loggingIn">
                 <router-link to="/login">Log in</router-link>
               </a>
             </div>
@@ -47,7 +55,7 @@
     </nav>
     <!-- NavBar -->
     <div v-if="alert.message" :class="`alert ${alert.type}`">{{alert.message}}</div>
-    <router-view></router-view>
+    <router-view :key="$route.fullPath"></router-view>
     <br />
     <br />
     <footer class="footer">
@@ -71,7 +79,11 @@ export default {
     },
 
     loggingIn() {
-      return this.$store.state.authentication.status.loggingIn;
+      if(localStorage.getItem("isLogged")) {
+        return true;
+      } else {
+        return false;
+      }
     }
   },
   watch: {

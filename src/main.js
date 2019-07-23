@@ -2,12 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import VeeValidate from 'vee-validate'
 import VueLogger from 'vuejs-logger'
-import { store } from './_store';
-import { router } from './_helpers';
-import App from './app/App';
+import { store } from './_store'
+import { router } from './_helpers'
+import App from './app/App'
+import VueLazyload from 'vue-lazyload'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
+Vue.use(VueLazyload)
 
 Vue.use(VeeValidate)
 

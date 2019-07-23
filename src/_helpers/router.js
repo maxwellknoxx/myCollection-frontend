@@ -4,6 +4,9 @@ import Router from 'vue-router';
 import login from '../components/login'
 import home from '../components/home'
 import categories from '../components/categories'
+import category from '../components/category'
+import item from '../components/item'
+import publish from '../components/publish'
 import signup from '../components/signup'
 import forgotPassword from '../components/forgotPassword'
 import resetPassword from '../components/resetPassword'
@@ -17,6 +20,9 @@ export const router = new Router({
         { path: '/login', name: 'login', component: login },
         { path: '/home', name: 'home', component: home },
         { path: '/categories', name: 'categories', component: categories },
+        { path: '/category/:data', name: 'category', component: category },
+        { path: '/item/:data', name: 'item', component: item },
+        { path: '/publish', name: 'publish', component: publish },
         { path: '/signup', name: 'signup', component: signup },
         { path: '/forgotPassword', name: 'forgotPassword', component: forgotPassword },
         { path: '/resetPassword', name: 'resetPassword', component: resetPassword },
