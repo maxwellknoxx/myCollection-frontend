@@ -72,13 +72,7 @@
 </template>
 
 <script>
-import VueUploadMultipleImage from "vue-upload-multiple-image";
-
 export default {
-  components: {
-    VueUploadMultipleImage
-  },
-
   data() {
     return {
       item: {

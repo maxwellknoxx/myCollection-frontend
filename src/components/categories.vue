@@ -1,20 +1,31 @@
 <template>
   <div id="app">
     <categoriesMenu />
+    <br />
 
-    <div id="recent-items">
+    <div id="recent-items-txt" class="recent-items-txt">
       <h1>Recent items</h1>
+    </div>
 
-      <div class="w3-container">
-        <div class="w3-card" style="width:25%">
-          <img src="../assets/yugioh.jpg" alt="Person" height="264" width="164" />
-          <div class="w3-container">
-            <h4>
-              <b>{{ allRecentItems[0].name }}</b>
-            </h4>
-            <p>{{ allRecentItems[0].description }}</p>
-          </div>
-        </div>
+    <div class="columns">
+      <div id="items" class="items" v-for="item in allRecentItems" :key="item.id">
+        <figure>
+          <router-link :to=" '/item/' + item.id ">
+          <img src="../assets/yugioh.jpg" height="264" width="164" class="img" />
+          </router-link>
+        </figure>
+        <p>
+          <strong>Item:</strong>
+          {{ item.name }}
+        </p>
+        <p>
+          <strong>Trade:</strong>
+          {{ item.trade }}
+        </p>
+         <p>
+          <strong>Location:</strong>
+          {{ item.profile.location }}
+        </p>
       </div>
     </div>
   </div>
@@ -51,67 +62,45 @@ export default {
 </script>
 
 <style>
-.categories {
-  float: left;
+.recent-items-txt {
+  border: 1px;
+}
+
+.recent-items > div {
+  position: center;
+}
+
+.items {
+  background-color: #99badd;
+
+  height: 380px;
   width: 300px;
-  border: 3px solid;
-  padding: 10px;
-  margin-bottom: 50px;
+
+  border-left: 6px solid black;
+  border-radius: 5px;
+  border-width: 5px;
+
+  margin-top: 0px;
+  margin-bottom: 20px;
+  margin-right: 5px;
+  margin-left: 20px;
+
+  padding-top: 2px;
+  padding-bottom: 20px;
+  padding-right: 5px;
+  padding-left: 20px;
+
 }
 
-.recent-items {
-  padding: 70px 0;
-  position: relative;
-  text-align: center;
+.items > p {
+  text-align: left;
 }
 
-.recent {
-  padding: 20px 10px;
-  margin: 20px;
-  border: 1px solid black;
-}
+.img {
 
-.recent-td {
-  padding: 20px 10px;
-  margin: 20px;
-  border: #000000;
-}
-
-.VueCarousel-slide {
-  position: relative;
-  background: #42b983;
-  color: #fff;
-  font-family: Arial;
-  font-size: 24px;
-  text-align: center;
-  min-height: 100px;
-}
-
-.description {
-  background-color: #f8f8f8;
-  overflow: hidden;
-  padding: 10px 15px 17px 15px;
-  border-top: 1px solid #dddddd;
-  zoom: 1;
-}
-
-.name {
-  color: #000000;
-  font-weight: bold;
-  vertical-align: bottom;
-}
-
-.trade {
-  color: #000000;
-  font-weight: bold;
-  vertical-align: bottom;
-}
-
-.location {
-  color: #999;
-  padding-top: 3px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-right: 10px;
+  margin-left: 20px;
 }
 </style>

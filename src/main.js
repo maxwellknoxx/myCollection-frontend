@@ -5,11 +5,9 @@ import VueLogger from 'vuejs-logger'
 import { store } from './_store'
 import { router } from './_helpers'
 import App from './app/App'
-import VueLazyload from 'vue-lazyload'
 
 Vue.config.productionTip = false
 Vue.use(Vuex)
-Vue.use(VueLazyload)
 
 Vue.use(VeeValidate)
 

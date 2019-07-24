@@ -58,15 +58,17 @@
     <router-view :key="$route.fullPath"></router-view>
     <br />
     <br />
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          {{ loggingIn }}
-          <strong>MyCollection</strong> by
-          <a href="https://github.com/maxwellknoxx">Maxwell Santos</a>
-        </p>
-      </div>
-    </footer>
+    <div class="footer-class">
+      <footer class="footer">
+        <div class="content has-text-centered">
+          <p>
+            {{ loggingIn }}
+            <strong>MyCollection</strong> by
+            <a href="https://github.com/maxwellknoxx">Maxwell Santos</a>
+          </p>
+        </div>
+      </footer>
+    </div>
   </div>
 </template>
 
@@ -79,7 +81,7 @@ export default {
     },
 
     loggingIn() {
-      if(localStorage.getItem("isLogged")) {
+      if (localStorage.getItem("isLogged")) {
         return true;
       } else {
         return false;
@@ -105,6 +107,9 @@ export default {
   margin-top: 60px;
 }
 
+.footer-class {
+  margin-top: 60px;
+}
 
 .right {
   position: absolute;
@@ -112,5 +117,4 @@ export default {
   width: 300px;
   padding: 10px;
 }
-
 </style>
