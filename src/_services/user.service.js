@@ -15,7 +15,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
-    return fetch(`http://localhost:8080/api/auth/signin`, requestOptions)
+    return fetch(`http://localhost:8080/api/v1/auth/login`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
@@ -23,7 +23,6 @@ function login(username, password) {
                 // store user details and jwt token in local storage to keep user logged in between page refreshes
                 //console.log(JSON.stringify(user.data));
                 localStorage.setItem('user', JSON.stringify(user.data.jwt.accessToken));
-                localStorage.setItem('profile', JSON.stringify(user.data));
             }
 
             return user;
@@ -33,7 +32,8 @@ function login(username, password) {
 function logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
-    localStorage.removeItem('profile');
+    localStorage.removeItem('isLogged');
+    
 }
 
 function getAll() {
@@ -42,7 +42,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:8080/api/user/users`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:8080/api/v1/user/users`, requestOptions).then(handleResponse);
 }
 
 //fisinh it later
@@ -54,7 +54,7 @@ function createUser(userInformation) {
         body: JSON.stringify({ userInformation })
     };
 
-    return fetch(`http://localhost:8080/api/auth/signup`, requestOptions)
+    return fetch(`http://localhost:8080/api/v1/auth/signup`, requestOptions)
         .then(handleResponse)
         .then(response => {
             return response;

@@ -1,64 +1,38 @@
 <template>
   <div id="app">
-
-    <div class="container">
-      <h1>My Collection</h1>
-      <br />
-      <br />
-      {{ message }}
-      <div class="centerForm">
-        <form @submit.prevent="login">
-          <div class="field">
-            <p class="control has-icons-left">
-              <input
-                class="input"
-                type="text"
-                placeholder="username"
-                required
-                v-model="username"
-                @click="cleanMessage()"
-                @blur="validateUserField()"
-                :class="{ 'is-invalid': submitted && !username }"
-              />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-            </p>
-            <div v-show="submitted && !username" class="invalid-feedback">Username is required</div>
-          </div>
-          <div class="field">
-            <p class="control has-icons-left">
-              <input
-                class="input"
-                type="password"
-                placeholder="Password"
-                required
-                v-model="password"
-                @click="cleanMessage()"
-                :class="{ 'is-invalid': submitted && !password }"
-              />
-              <span class="icon is-small is-left">
-                <i class="fas fa-lock"></i>
-              </span>
-            </p>
-            <div v-show="submitted && !password" class="invalid-feedback">Password is required</div>
-          </div>
-          <div class="field">
-            <p class="control">
-              <button class="button is-success" :disabled="loggingIn">Login</button>
-            </p>
-          </div>
-        </form>
-      </div>
-
-      <br />
-      <br />
-      <div class="centerForgotPassword">
-        <p>
-          Did you forget your password?
-          <router-link to="/forgotPassword">Reset password</router-link>
-        </p>
-      </div>
+    <div class="login-form">
+      <form @submit.prevent="login">
+        <h2 class="text-center">Log in</h2>
+        <div class="form-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Username"
+            required="required"
+            v-model="username"
+          />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            required="required"
+            v-model="password"
+          />
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+        <div class="clearfix">
+          <router-link to="/signup">Sign Up</router-link>
+        </div>
+        <div class="clearfix">
+          <span class="pull-right">
+            <router-link to="/forgotPassword">Forgot Password?</router-link>
+          </span>
+        </div>
+      </form>
     </div>
   </div>
 </template>
@@ -118,17 +92,26 @@ export default {
 
 
 <style>
-.centerForm {
-  margin: auto;
-  width: 50%;
-  border: 3px solid;
-  padding: 10px;
+.login-form {
+  width: 340px;
+  margin: 50px auto;
 }
-
-.centerForgotPassword {
-  margin: auto;
-  width: 50%;
-  border: 3px solid red;
-  padding: 10px;
+.login-form form {
+  margin-bottom: 15px;
+  background: #f7f7f7;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  padding: 30px;
+}
+.login-form h2 {
+  margin: 0 0 15px;
+}
+.form-control,
+.btn {
+  min-height: 38px;
+  border-radius: 2px;
+}
+.btn {
+  font-size: 15px;
+  font-weight: bold;
 }
 </style>

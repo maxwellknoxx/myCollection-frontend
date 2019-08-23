@@ -1,74 +1,38 @@
 <template>
   <div id="app">
-    <!-- NavBar -->
-    <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item">
-            <router-link to="/home">Home</router-link>
-          </a>
-          <a class="navbar-item">
-            <router-link to="/categories">Categories</router-link>
-          </a>
-        </div>
+    <header>
+      <div class="bs-example">
+        <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+          <!--  <a href="#" class="navbar-brand">Brand</a>
+          <button
+            type="button"
+            class="navbar-toggler"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>-->
 
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <div id="search" class="right">
-                <div class="field has-addons">
-                  <div class="control">
-                    <input class="input" type="text" placeholder="Find an item" />
-                  </div>
-                  <div class="control">
-                    <a class="button is-info">Search</a>
-                  </div>
-                </div>
-              </div>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav">
+              <a href="#" class="nav-item nav-link">
+                <router-link to="/login">Login</router-link>
+              </a>
+              <a href="#" class="nav-item nav-link">
+                Sign up
+              </a>
+              <a href="#" class="nav-item nav-link">Products</a>
             </div>
+            <form class="form-inline ml-auto">
+              <input type="text" class="form-control mr-sm-2" placeholder="Search" />
+              <button type="submit" class="btn btn-outline-light">Search</button>
+            </form>
           </div>
-        </div>
-
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <a class="button is-primary" v-if="!loggingIn">
-                <strong>
-                  <router-link to="/signup">Sign up</router-link>
-                </strong>
-              </a>
-              <a class="button is-primary" v-if="loggingIn">
-                <strong>
-                  <router-link to="/publish">Publish item</router-link>
-                </strong>
-              </a>
-              <a class="button is-light" v-if="loggingIn">
-                <router-link to="/login">Log out</router-link>
-              </a>
-              <a class="button is-light" v-if="!loggingIn">
-                <router-link to="/login">Log in</router-link>
-              </a>
-            </div>
-          </div>
-        </div>
+        </nav>
       </div>
-    </nav>
-    <!-- NavBar -->
-    <div v-if="alert.message" :class="`alert ${alert.type}`">{{alert.message}}</div>
-    <router-view :key="$route.fullPath"></router-view>
-    <br />
-    <br />
-    <div class="footer-class">
-      <footer class="footer">
-        <div class="content has-text-centered">
-          <p>
-            {{ loggingIn }}
-            <strong>MyCollection</strong> by
-            <a href="https://github.com/maxwellknoxx">Maxwell Santos</a>
-          </p>
-        </div>
-      </footer>
-    </div>
+    </header>
+
+    <router-view></router-view>
   </div>
 </template>
 
@@ -98,23 +62,7 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-.footer-class {
-  margin-top: 60px;
-}
-
-.right {
-  position: absolute;
-  right: 0px;
-  width: 300px;
-  padding: 10px;
+.bs-example {
+  margin: 20px;
 }
 </style>
