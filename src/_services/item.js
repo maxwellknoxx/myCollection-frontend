@@ -1,4 +1,12 @@
-import { http } from './config.js'
+import { handleResponse, requestOptions } from '../_helpers';
+import { url } from './config';
+
+export const userService = {
+    login,
+    logout,
+    createUser,
+    findAll
+};
 
 export default {
     findAll: () => {
