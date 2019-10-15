@@ -4,12 +4,20 @@
       <div class="bs-example">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary">
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav">
+            <div class="navbar-nav" v-if="!loggingIn">
               <a href="#">
                 <router-link to="/login" class="nav-item nav-link">Login</router-link>
               </a>
               <a href="#">
-                <router-link to="/caterogies" class="nav-item nav-link">Categories</router-link>
+                <router-link to="/categories" class="nav-item nav-link">Categories</router-link>
+              </a>
+            </div>
+             <div class="navbar-nav" v-else>
+              <a href="#">
+                <router-link to="/publish" class="nav-item nav-link">Publish an item</router-link>
+              </a>
+              <a href="#">
+                <router-link to="/categories" class="nav-item nav-link">Categories</router-link>
               </a>
             </div>
             <form class="form-inline ml-auto">

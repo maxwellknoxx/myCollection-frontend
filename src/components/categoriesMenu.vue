@@ -12,7 +12,7 @@
 
 <script>
 
-import service from "../_services/category"
+import { categoryService } from "../_services/category"
 
 export default {
   data() {
@@ -28,8 +28,8 @@ created() {
 
 methods: {
     findAll() {
-        service.findAll().then(response => {
-            this.categories = response.data.listData;
+        categoryService.findAll().then(response => {
+            this.categories = response ;
         })
     }
 }

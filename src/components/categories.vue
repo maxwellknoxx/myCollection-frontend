@@ -24,7 +24,7 @@
         </p>
          <p>
           <strong>Location:</strong>
-          {{ item.profile.location }}
+          {{ item.location }}
         </p>
       </div>
     </div>
@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import itemsService from "../_services/item";
-import categoriesMenu from "./categoriesMenu";
+import { itemService } from "../_services/item";
+import categoriesMenu  from "./categoriesMenu";
 
 export default {
   components: {
@@ -52,9 +52,8 @@ export default {
 
   methods: {
     findAllRecentItems() {
-      itemsService.findAll().then(response => {
-        this.allRecentItems = response.data.listData;
-        this.$log.info(this.allRecentItems);
+      itemService.findAll().then(response => {
+        this.allRecentItems = response;
       });
     }
   }

@@ -1,24 +1,32 @@
 import { handleResponse, requestOptions } from '../_helpers';
 import { url } from './config';
 
-export const userService = {
-    login,
-    logout,
-    createUser,
+export const itemService = {
+    findAllItemsByCategory,
+    findItemById,
     findAll
 };
 
-export default {
-    findAll: () => {
-        return http.get('item/allItems')
-    },
+function findAllItemsByCategory(id) {
+    return fetch(url + `v1/item/allItemsByCategory/` + id, requestOptions.get())
+        .then(handleResponse)
+        .then(response => {
+            return response;
+        })
+}
 
-    findAllItemsByCategory: (id) => {
-        return http.get('item/allItemsByCategory/' + id)
-    },
+function findItemById() {
+    return fetch(url + `v1/item/items/` + id, requestOptions.get())
+        .then(handleResponse)
+        .then(response => {
+            return response;
+        })
+}
 
-    findItemById: (id) => {
-        return http.get('item/items/' + id)
-    }
-
+function findAll() {
+        return fetch(url + `v1/item/items`, requestOptions.get())
+        .then(handleResponse)
+        .then(response => {
+            return response;
+        })
 }

@@ -72,6 +72,7 @@
 </template>
 
 <script>
+//fazer essa pagina ficar bonita.. e ta faltando mexer na pagina de items
 export default {
   data() {
     return {
